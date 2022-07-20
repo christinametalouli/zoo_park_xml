@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="zoo_park">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="zoo_name"/>
+				<xs:element ref="trainer_list"/>
+				<xs:element ref="animal_classification"/>
+				<xs:element ref="classification"/>
+				<xs:element ref="contact_details"/>
+				<xs:element ref="park_timings"/>
+				<xs:element ref="tickets"/>
+				<xs:element ref="animal_list"/>	
+			</xs:sequence>
+			<xs:attribute name="number_of_animals" type="xs:string" use="required"/>
+			<xs:attribute name="year_opened" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="zoo_name" type="xs:string"/>
+	
+	<xs:element name="trainer_list">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" ref="trainer"/>
+			</xs:sequence>
+			
+			
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="trainer">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="trainer_name" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute name="trid" type="xs:ID" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	<xs:element name="animal_classification">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="classification_type"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="classification_type">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="classification_id" type="xs:ID" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+
+
+	
+	<xs:element name="classification">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="class"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="class">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="value" type="xs:string" use="required"/>
+					<xs:attribute name="class_id" type="xs:ID" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	
+	<xs:element name="contact_details">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="address"/>
+				<xs:element ref="tel"/>
+				<xs:element ref="email"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="address" type="xs:string"/>
+	<xs:element name="tel" type="xs:string"/>
+	<xs:element name="email" type="xs:string"/>
+	
+	
+	
+	
+	<xs:element name="park_timings">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="day"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	<xs:element name="day">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="day_name"/>
+				<xs:element ref="timing"/>
+			</xs:sequence>
+			<xs:attribute name="day_id" type="xs:ID" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="day_name" type="xs:string"/>
+	<xs:element name="timing" type="xs:string"/>
+	
+	
+	
+	
+	
+	<xs:element name="tickets">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="weekday_charges"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="weekend_holiday_charges"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="weekday_charges">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="w_value"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="w_value">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="wticket_category" type="xs:string" use="required"/>
+					<xs:attribute name="wunit" type="xs:string" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+
+
+
+
+	<xs:element name="weekend_holiday_charges">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="h_value"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="h_value">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="hticket_category" type="xs:string" use="required"/>
+					<xs:attribute name="hunit" type="xs:string" use="required"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	
+	
+	
+	<xs:element name="animal_list">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="1" maxOccurs="unbounded" ref="animal"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="animal">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="1" ref="scientific_name"/>
+				<xs:element ref="quantity"/>
+				<xs:element ref="animal_descr"/>
+				<xs:element ref="animal_characteristics"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="show_participation"/>
+				<xs:element ref="threats"/>
+			</xs:sequence>
+			<xs:attribute name="animal_id" type="xs:IDREFS" use="required"/>
+			<xs:attribute name="an_class_id" type="xs:IDREFS" use="required"/>
+			<xs:attribute name="trainer_id" type="xs:IDREFS" use="required"/>
+			<xs:attribute name="animal_name" type="xs:string" use="required"/>
+			<xs:attribute name="animal_names_info" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="scientific_name" type="xs:string"/>
+	<xs:element name="quantity" type="xs:string"/>
+	<xs:element name="animal_descr" type="xs:string"/>
+	
+	<xs:element name="animal_characteristics">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="allocation"/>
+				<xs:element ref="weight"/>
+				<xs:element ref="habitat"/>
+				<xs:element ref="dimensions"/>
+				<xs:element ref="lifetime"/>
+				<xs:element ref="reproduction"/>
+				<xs:element minOccurs="0" maxOccurs="1" ref="population"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="allocation" type="xs:string"/>
+	
+	
+	<xs:element name="weight">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="wmale"/>
+				<xs:element ref="wfemale"/>
+			</xs:sequence>
+			<xs:attribute default="kg" name="unit_weight"/>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	
+	<xs:element name="wmale">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:float">
+					<xs:attribute default="kg" name="unit_weight">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="kg"/>
+								<xs:enumeration value="gr"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="wfemale">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:float">
+					<xs:attribute default="kg" name="unit_weight">
+						<xs:simpleType>
+							<xs:restriction base="xs:NMTOKEN">
+								<xs:enumeration value="kg"/>
+								<xs:enumeration value="gr"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	<xs:element name="habitat" type="xs:string"/>
+	
+	
+	
+	<xs:element name="dimensions">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="height"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="length"/>
+
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+
+	
+	<xs:element name="height">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="hmale"/>
+				<xs:element ref="hfemale"/>
+			</xs:sequence>
+			<xs:attribute fixed="m" name="unit_height" use="required"/>
+			<xs:attribute name="max" type="xs:boolean" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	
+	
+	<xs:element name="hmale" type="xs:string"/>
+	
+	<xs:element name="hfemale">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute fixed="m" name="f_unit_height">
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+
+	
+	<xs:element name="length">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:float">
+					<xs:attribute name="unit_length" default="m"/>
+					<xs:attribute name="max" type="xs:boolean"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	
+	
+	<xs:element name="lifetime">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="unit_lifetime" default="years"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	
+	
+	<xs:element name="reproduction">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="duration1"/>
+			</xs:sequence>
+			<xs:attribute name="reproduction_id" type="xs:string" use="required"/>
+			<xs:attribute default="days" name="unit_pregnancy"/>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="duration1" type="xs:string"/>
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<xs:element name="population">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="under" type="xs:boolean"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	
+
+	<xs:element name="show_participation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="feeding"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="trainer_speaking"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="animal_show"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="show_bird_flight"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="feeding">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="duration"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="dates"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="duration">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute fixed="minutes" name="time" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	
+	<xs:element name="dates">
+		<xs:complexType>
+			<xs:sequence>
+				
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="date"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	<xs:element name="date">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="start_hour" type="xs:string"/>
+					<xs:attribute name="did" type="xs:IDREFS"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	<xs:element name="trainer_speaking">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="duration"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="dates"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="animal_show">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="duration"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="dates"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="show_bird_flight">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="duration"/>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="dates"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<xs:element name="threats">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="threat"/>
+			</xs:sequence>
+			<xs:attribute name="iucn" type="xs:string" use="required"/>
+			<xs:attribute name="indicat_threat" type="xs:integer" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	<xs:element name="threat">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="thr_id" type="xs:ID"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</xs:schema>

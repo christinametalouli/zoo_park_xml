@@ -1,0 +1,55 @@
+zoo_park {
+    text-align: center;
+    font-family: 'WILDLIFE XYZ PARK', Times, serif
+}
+contact_details {
+    display: block;
+    padding-top: 10px;
+    font-size: 20px;
+    
+}
+trainer_list, animal_classification, classification, park_timings, tickets {
+    display: none;
+}
+zoo_name {
+	
+      display:block;
+      font-weight:bolder;
+      text-align:center;
+      font-size:30px;
+      background-color: green;
+      color: white;
+}
+animal {
+    display: block; 
+    background-color: #F2EECb;
+    margin: 2% 10% 1%;
+    box-shadow: black 1px 1px 4px;
+}
+animal::before {
+    content: attr(animal_name); 
+    font-size: 160%;
+    text-align: center;
+    display: block;
+    padding-top: 1%;
+    text-decoration: underline;
+    text-decoration-color: steelblue; 
+}
+animal ::before {
+    content: attr(animal_name); 
+    font-size: 160%;
+    text-align: center;
+    display: block;
+    padding-top: 1%;
+    text-decoration: underline;
+    text-decoration-color: steelblue; 
+}
+animal scientific_name::before {
+    content: attr(scientific_name); 
+    font-size: 160%;
+    text-align: center;
+    display: block;
+    padding-top: 1%;
+    text-decoration: underline;
+    text-decoration-color: steelblue; 
+}
